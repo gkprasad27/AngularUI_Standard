@@ -1,18 +1,14 @@
-// This file can be replaced during build by using the `fileReplacements` array.
+9090// This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  serverBaseUrl:"http://183.82.48.82:9092/api/"
-  // languageServiceUrl: 'http://tsgvm02182.newbreed.com:32557',
-  // accountServiceUrl: 'http://tsgvm02182.newbreed.com:32564',
-  // queryServiceUrl: 'http://tsgvm02182.newbreed.com:32565',
-  // configurationServiceUrl: 'http://tsgvm02182.newbreed.com:32563',
-  // dataExtractionServiceUrl: 'http://tsgvm02182.newbreed.com:32559',
-  // userInterfaceServiceUrl: 'http://tsgvm02182.newbreed.com:32566',
-  // invoiceUrl: 'http://tsgvm02182.newbreed.com:32567',
-  // historyUrl: 'http://tsgvm02182.newbreed.com:32571'
+  //baseUrl: `http://183.82.48.82:89`
+  //baseUrl: `http://192.168.2.26:89`
+   baseUrl: `http://103.67.236.159:9090`
+  //baseUrl: `http://localhost:5000`
+
 };
 
 /*

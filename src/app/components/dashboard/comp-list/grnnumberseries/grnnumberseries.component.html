@@ -1,0 +1,69 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span> {{'grnnumberseries.title' | translate }} </span>
+    <mat-icon class="my-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED',
+           'ng--invalid': !formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'  }">
+          <mat-label [translate]="'grnnumberseries.glsubName'"></mat-label>
+          <input matInput formControlName="grnseries"
+            maxlength="4" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.grnseries.valid  }">
+            GRN Series is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
+          <mat-label [translate]="'grnnumberseries.description'"></mat-label>
+          <input matInput formControlName="description"
+            maxlength="30" appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'grnnumberseries.fromInterval'"></mat-label>
+          <input matInput formControlName="fromInterval"
+            (change)="validationcode()" maxlength="30" appFocusOnEnter tabIndex="3">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'grnnumberseries.toInterval'"></mat-label>
+          <input matInput formControlName="toInterval"
+            (change)="validationcode()" maxlength="30" appFocusOnEnter tabIndex="4">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'grnnumberseries.currentNumber'"></mat-label>
+          <input matInput formControlName="currentNumber"
+            maxlength="30" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'grnnumberseries.prefix'"></mat-label>
+          <input matInput formControlName="prefix"
+            maxlength="30" appFocusOnEnter tabIndex="6">
+        </mat-form-field>
+
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,204 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<mat-card>
+
+    <mat-card-content>
+
+        <form [formGroup]="formData" autocomplete="off">
+
+            <div class="d--flex p-1 mat-form-field-height">
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.company' | translate }}</mat-label>
+                    <mat-select formControlName="company">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+                            {{comp.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.branch' | translate }}</mat-label>
+                    <mat-select formControlName="branch">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+                            {{branch.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.transactionType' | translate }}</mat-label>
+                    <mat-select formControlName="transactionType"
+                        (selectionChange)="checkTransType(); accountSelect();">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
+                            {{ trans }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.natureofTransaction' | translate }}</mat-label>
+                    <mat-select formControlName="natureofTransaction">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
+                            {{ nature }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.voucherType' | translate }}</mat-label>
+                    <mat-select formControlName="voucherType"
+                        (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of voucherTypeList" [value]="type.voucherTypeId">
+                            {{type.voucherTypeId}}- {{type.voucherTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.voucherNumber'"></mat-label>
+                    <input matInput formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.voucherDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="voucherDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.postingDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="postingDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.account' | translate }}</mat-label>
+                    <mat-select formControlName="account">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let acc of accountList" [value]="acc.id">
+                            {{ acc.id }} - {{acc.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.referenceNo'"></mat-label>
+                    <input matInput  formControlName="referenceNo" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.referenceDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker4" [nonEditable]="picker4"  formControlName="referenceDate"
+                        appFocusOnEnter tabIndex="4">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.profitCenter' | translate }}</mat-label>
+                    <mat-select formControlName="profitCenter">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let profCen of profitCenterList" [value]="profCen.id">
+                            {{profCen.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.segment' | translate }}</mat-label>
+                    <mat-select formControlName="segment">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let segm of segmentList" [value]="segm.id">
+                            {{segm.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.amount'"></mat-label>
+                    <input matInput type="number" formControlName="amount" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.chequeno'"></mat-label>
+                    <input matInput  formControlName="chequeNo" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'receiptspayments.chequeDate'"></mat-label>
+                    <input matInput [matDatepicker]="chequeDatepicker1" [nonEditable]="chequeDatepicker1"  formControlName="chequeDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="chequeDatepicker1"></mat-datepicker-toggle>
+                    <mat-datepicker #chequeDatepicker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.bpcategory' | translate }}</mat-label>
+                    <mat-select formControlName="bpcategory" (selectionChange)="onbpChange()">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let acc of bpTypeList" [value]="acc.code">
+                            {{acc.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.partyAccount' | translate }}</mat-label>
+                    <mat-select formControlName="partyAccount" (selectionChange)="puchaseinvoiceselect()">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let acc of bpgLists" [value]="acc.id">
+                            {{acc.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <div class="mat-mdc-form-field typeahead">
+                    <input placeholder="{{ 'receiptspayments.partyAccount' | translate }}" formControlName="partyAccount"
+                        [typeahead]="bpgLists" typeaheadOptionField='text' appFocusOnEnter tabIndex="3" (typeaheadOnSelect)="puchaseinvoiceselect()"
+                        class="form-control typeahead" [typeaheadItemTemplate]="customItemTemplate"  >
+                    <ng-template #customItemTemplate let-model="item">
+                        <span>{{model.text}}</span>
+                    </ng-template>
+                </div>
+
+            </div>
+        </form>
+
+        <div>
+            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+                [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+        </div>
+
+
+    </mat-card-content>
+
+    <mat-card-content class="d-flex justify-content-end py-1">
+
+        <button id="save" [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
+            (click)="save()"><i class="fa-solid fa-floppy-disk"></i>
+            {{ 'COMMON.SAVE' | translate }}
+        </button>
+        <button id="reset" [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
+            (click)="reset();"><i class="fa-solid fa-arrow-rotate-right"></i>
+            {{ 'COMMON.RESET' | translate }}
+        </button>
+        <button id="back" mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
+            {{ 'COMMON.BACK' | translate }}
+        </button>
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
+            (click)="return();">
+            {{ 'COMMON.RETURN' | translate }}
+        </button>
+
+    </mat-card-content>
+
+</mat-card>

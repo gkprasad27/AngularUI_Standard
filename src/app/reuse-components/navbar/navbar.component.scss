@@ -1,0 +1,24 @@
+@import "../../../reuse";
+
+mat-toolbar {
+  min-height: 50px;
+  height: 50px;
+  background-color: $color-orange;
+}
+#user{
+  background-color: #17b978;
+
+}
+.my-2{
+  background-color: rgb(6, 92, 95);
+}
+
+.my-2:hover{
+  background-color: rgb(24, 189, 211);
+}
+
+// .nav{
+//   width: vw;
+//   display: flex;
+  
+// }

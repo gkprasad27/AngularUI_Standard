@@ -1,0 +1,65 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span> {{'materialnumberrange.title' | translate }} </span>
+    <mat-icon class="my-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid&& formControls.code.status != 'DISABLED',
+           'ng--invalid': !formControls.code.valid&& formControls.code.status != 'DISABLED'  }">
+          <mat-label [translate]="'materialnumberrange.code'"></mat-label>
+          <input matInput formControlName="code" maxlength="4"
+            appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.code.valid && formControls.code.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code is
+            required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'materialnumberrange.fromInterval'"></mat-label>
+          <input matInput
+            formControlName="fromInterval" maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="3">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'materialnumberrange.toInterval'"></mat-label>
+          <input matInput formControlName="toInterval"
+            maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="4">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'materialnumberrange.currentNumber'"></mat-label>
+          <input matInput
+            formControlName="currentNumber" maxlength="30" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'materialnumberrange.prefix'"></mat-label>
+          <input matInput formControlName="prefix"
+            maxlength="30" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="nonNumaric" (change)="approveOrReject($event.checked)">
+          {{(modelFormData.get('nonNumaric').value != null) ? 'Numeric' : 'NonNumeric'}}
+        </mat-slide-toggle>
+
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

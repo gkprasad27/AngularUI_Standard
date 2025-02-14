@@ -1,0 +1,277 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<mat-card>
+
+  <mat-card-content>
+
+    <form [formGroup]="formData" class="card p-2 mb-3" autocomplete="off">
+
+      <h6 id="background">
+        Header Section      
+
+      </h6>
+
+      <div id="forms" class="d--flex p-1 mat-form-field-height">
+         
+        <mat-form-field class="form-element">
+          <mat-label>{{ 'bom.company' | translate }}</mat-label>
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+              {{comp.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'bom.profitCenter' | translate }}</mat-label>
+          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2"
+            (selectionChange)="profitCenterChange()">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let pft of profitCenterList" [value]="pft.id">
+              {{pft.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.amount'"></mat-label>
+          <input matInput formControlName="amount" appFocusOnEnter tabIndex="2">
+        </mat-form-field> -->
+
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.plant' | translate }}</mat-label>
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="2">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let plant of plantList" [value]="plant.id">
+              {{plant.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <mat-label>{{'bom.bomtype' | translate }}</mat-label>
+          <mat-select formControlName="bomtype" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let btype of BomType" [value]="btype.value">
+              {{btype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.bomnumber'"></mat-label>
+          <input matInput type="text" formControlName="bomnumber" appFocusOnEnter tabIndex="4">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.description'"></mat-label>
+          <input matInput formControlName="description" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.bomnumber'"></mat-label>
+          <input matInput formControlName="bomnumber" appFocusOnEnter tabIndex="4">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.saleOrder' | translate }}</mat-label>
+          <mat-select formControlName="saleOrder" appFocusOnEnter tabIndex="4" (selectionChange)="saleOrderChange()">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let qno of filterQnoList" [value]="qno.saleOrderNo">
+              {{qno.saleOrderNo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <!-- <div class="mat-mdc-form-field typeahead">
+          <input placeholder="{{ 'bom.product' | translate }}" formControlName="product" [typeahead]="mmasterList"
+            typeaheadOptionField='id' appFocusOnEnter tabIndex="5" class="form-control typeahead"
+            [typeaheadItemTemplate]="customItemTemplate" >
+          <ng-template #customItemTemplate let-model="item">
+            <span><strong>{{model.id}}</strong> - {{model.text}}</span>
+          </ng-template>
+        </div> -->
+
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.materialCode'"></mat-label>
+          <input matInput type="text" readonly formControlName="materialCode" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.materialName'"></mat-label>
+          <input matInput type="text" readonly formControlName="materialName" appFocusOnEnter tabIndex="7">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.saleOrder'"></mat-label>
+          <input matInput type="text"  formControlName="saleOrder" appFocusOnEnter tabIndex="7">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.description'"></mat-label>
+          <input matInput formControlName="description" appFocusOnEnter tabIndex="5">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.costUnit' | translate }}</mat-label>
+          <mat-select formControlName="costUnit" appFocusOnEnter tabIndex="6" (selectionChange)="costunitSelect()">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let culist of costunitList" [value]="culist.objectNumber">
+              {{culist.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="form-element">
+          <mat-label [translate]="'bom.material'"></mat-label>
+          <input matInput formControlName="material" appFocusOnEnter
+            tabIndex="7">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.batch' | translate }}</mat-label>
+          <mat-select formControlName="batch" appFocusOnEnter tabIndex="8">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let batch of batchmasterList" [value]="batch.batchNumber">
+              {{batch.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.createdBy' | translate }}</mat-label>
+          <mat-select formControlName="createdBy" appFocusOnEnter tabIndex="8">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+              {{emp.id}} - {{emp.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+
+        <!-- <mat-form-field>
+          <mat-label>{{'bom.levelType' | translate }}</mat-label>
+          <mat-select formControlName="levelType" appFocusOnEnter tabIndex="9">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let levelType of LevelType" [value]="levelType.value">
+              {{levelType.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+
+
+      </div>
+
+    </form>
+
+    <div class="p-2 card">
+
+      <h6 id="background">
+        Detail Section
+        
+      </h6>
+
+      <form [formGroup]="formData1" autocomplete="off">
+
+
+
+        <div class="d--flex p-1 mat-form-field-height">
+
+          <div class="mat-mdc-form-field typeahead">
+            <input formControlName="materialCode" placeholder="{{ 'bom.materialCode' | translate }}"
+              [typeahead]="mmasterListData" typeaheadOptionField='id' appFocusOnEnter tabIndex="6"
+              class="form-control typeahead" [typeaheadItemTemplate]="customItemTemplate"
+              (typeaheadOnSelect)="materialCodeChange()" (input)="onValueChange()">
+            <ng-template #customItemTemplate let-model="item">
+              <span><strong>{{model.id}}</strong> - {{model.text}}</span>
+            </ng-template>
+          </div>
+
+          <!-- <mat-form-field class="form-element">
+            <mat-label [translate]="'bom.availableQty'"></mat-label>
+            <input matInput type="number" readonly formControlName="availableQty" appFocusOnEnter tabIndex="7">
+          </mat-form-field> -->
+
+          <!-- <mat-form-field class="form-element">
+            <mat-label [translate]="'bom.netWeight'"></mat-label>
+            <input matInput type="number" readonly formControlName="netWeight" appFocusOnEnter tabIndex="8">
+          </mat-form-field> -->
+
+          <mat-form-field class="form-element1">
+            <mat-label [translate]="'bom.qty'"></mat-label>
+            <input matInput type="number" formControlName="qty" appFocusOnEnter tabIndex="7">
+          </mat-form-field>
+
+          <!-- <mat-form-field class="form-element">
+            <mat-label [translate]="'bom.rate'"></mat-label>
+            <input matInput type="number" formControlName="rate" appFocusOnEnter tabIndex="10">
+          </mat-form-field> -->
+          <mat-slide-toggle class="d-flex m-2" formControlName="mainComponent" >
+            <!-- {{ (formData1.get('mainComponent').value == 'Y') ? ({{ 'bom.mainComponent' | translate }}) : ({{ 'bom.subComponent' | translate }}) }} -->
+            {{ (formData1.get('mainComponent').value) ? 'Main Component' : 'Sub Component' }}
+          </mat-slide-toggle>
+
+          <mat-slide-toggle class="d-flex m-2" formControlName="billable" >
+            <!-- {{(formData1.get('billable').value == 'Y') ? ({{ 'bom.billable' | translate }}) : ({{ 'bom.nonBillable' | translate }}) }} -->
+            {{(formData1.get('billable').value) ? 'Billable' : 'Non Billable' }}
+          </mat-slide-toggle>
+
+          <!-- <mat-form-field class="form-element">
+            <mat-label [translate]="'bom.amount'"></mat-label>
+            <input matInput type="number" formControlName="amount" appFocusOnEnter tabIndex="11">
+          </mat-form-field> -->
+
+        </div>
+
+        <div id="for" class="d-flex justify-content-end mb-3">
+
+          <button mat-raised-button id="submit" type="submit" class="button-color-bule mx-1 text-white" (click)="saveForm()"><i class="fa-solid fa-circle-plus"></i>
+            {{ 'COMMON.ADD' | translate }}
+          </button>
+          <button mat-raised-button id="reset" class="button-color-red text-white mx-1" (click)="resetForm();"><i class="fa-solid fa-arrow-rotate-right"></i>
+            {{ 'COMMON.RESET' | translate }}
+          </button>
+
+        </div>
+
+      </form>
+
+      <div>
+        <app-table class="table-css" [tableData]="tableData" [showButtons]="false"
+          (editOrDeleteEvent)="editOrDeleteEvent($event)">
+        </app-table>
+      </div>
+    </div>
+
+
+
+  </mat-card-content>
+
+  <mat-card-content class="d-flex justify-content-end py-1">
+
+    <div class="d-flex">
+
+      <!-- <div class="px-1"> <span class="px-1"> <b> {{'bom.totalAmount' | translate }} </b></span> :
+        <b class="text-danger"> {{ formData.value.amount}} </b>
+      </div> -->
+
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" [disabled]="formData.invalid || !tableData || !(tableData && tableData.length)"  (click)="save()" ><i class="fa-solid fa-floppy-disk"></i>
+        {{ 'COMMON.SAVE' | translate }}
+      </button>
+      <button id="reset" [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3" (click)="reset();"><i class="fa-solid fa-arrow-rotate-right"></i>
+        {{ 'COMMON.RESET' | translate }}
+      </button>
+      <button id="back" mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+      <!-- <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3" (click)="return();">
+        {{ 'COMMON.RETURN' | translate }}
+      </button> -->
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

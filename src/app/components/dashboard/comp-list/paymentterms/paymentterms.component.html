@@ -1,0 +1,51 @@
+<div class="bg-white">
+
+  <mat-tab-group>
+
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <mat-tab label="{{'paymentterms.title' | translate }}">
+
+        <mat-card-content class="py-5 p-2 m-0">
+          <div class="d--flex">
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.code.valid, 'ng--invalid': !formControls.code.valid  }">
+              <mat-label [translate]="'paymentterms.code'"></mat-label>
+              <input matInput formControlName="code" maxlength="5"
+                appFocusOnEnter tabIndex="1">
+              <mat-error *ngIf="!formControls.code.valid" [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code
+                is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
+              <mat-label [translate]="'paymentterms.description'"></mat-label>
+              <input matInput formControlName="description"
+                maxlength="50" appFocusOnEnter tabIndex="2">
+              <mat-error *ngIf="!formControls.description.valid"
+                [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Name is required</mat-error>
+            </mat-form-field>
+
+          </div>
+        </mat-card-content>
+
+      </mat-tab>
+
+      <mat-tab label="PaymentTerms  Details">
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitTableData($event)"
+          [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+      </mat-tab>
+    </form>
+  </mat-tab-group>
+
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

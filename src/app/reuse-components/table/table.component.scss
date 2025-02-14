@@ -1,0 +1,146 @@
+@import "../../../reuse";
+
+.table {
+  overflow-x: scroll;
+  min-height: 70vh;
+}
+
+:host ::ng-deep table {
+  font-family: sans-serif;
+  & > tbody  {
+    & tr {
+      border-bottom: 1px solid $color-ddd;
+    }
+    & td {
+      font-size: 11px;
+      vertical-align: middle;
+      border: none !important;
+    }
+    & th {
+      vertical-align: middle;
+      border: none !important;
+    }
+    & tr:nth-child(even) {
+    background-color: $color-f9f9f9
+    }
+    & tr:nth-child(odd) {
+      background-color: $color-white
+      }
+      & tr:nth-child(even):hover {
+        background-color: $color-f9f9f9
+        }
+        & tr:nth-child(odd):hover {
+          background-color: $color-f9f9f9
+          }
+
+          .highlight {
+  background-color: yellow !important;
+}
+  }
+}
+
+
+.mat-header-cell, .mat-cell {
+  white-space:nowrap;
+  padding: 5px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  border: none !important;
+}
+
+.table th {
+  font-size: 11px;
+  background-color: $color-orange;
+  color: $color-white;
+}
+
+.table tr {
+  height: 25px !important;
+  cursor: pointer;
+}
+
+:host ::ng-deep .filter {
+  width: 500px;
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  & .mat-mdc-form-field-infix {
+    min-height: 30px !important;
+    padding: 5px !important;
+  }
+}
+
+.dropdown--width {
+  width: 20rem;
+}
+
+::ng-deep .mat-pseudo-checkbox {
+  display: none !important; 
+}
+
+
+.link--val {
+  text-decoration: underline;
+  color: blue;
+}
+
+
+.mw-23 {
+  min-width: 23px;
+}
+
+// #page{
+//   background-color: skyblue !important;
+//   position:absolute;
+//   top:0;
+//   width:fit-content;
+// }
+
+#ng{
+  // background-color:  #174154 !important;
+  
+  height: 44px;
+  
+  width: 64%;
+}
+
+#filt{
+  // background-color:  #174154;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+  height: 44px;
+
+}
+.btn-group align-items-center{
+  background-color: blue !important;
+  width:80%;
+}
+
+ng-container{
+  background-color:  #174154 !important;
+  border-radius: 20%;
+  
+
+}
+#filterinput{
+  color: red !important;
+  background-color: white;
+  height: 33px;
+
+  
+}
+
+// .paginator-container {
+//   width: 10%; /* Increase the width of the paginator container */
+//   display: flex; /* Use flexbox to control alignment */
+//   justify-content: center; /* Center-align paginator horizontally */
+// }
+
+#delete{
+  color: orange;
+}
+#edit{
+  color: orange;
+}

@@ -1,0 +1,90 @@
+<div class="position-relative popup-class">
+
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span> {{'voucherseries.title' | translate }} </span>
+    <mat-icon class="my-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+      <div class="d--flex">
+
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.voucherSeriesKey.valid &&formControls.voucherSeriesKey.status != 'DISABLED',
+           'ng--invalid': !formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED' }">
+           <mat-label [translate]="'voucherclass.voucherSeriesKey'"></mat-label>
+          <input matInput  formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.voucherSeriesKey.valid  }">voucher Series Key is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'voucherclass.fromInterval'"></mat-label>
+          <input matInput  formControlName="fromInterval"
+            (change)="validationcode()" appFocusOnEnter tabIndex="2">
+
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'voucherclass.toInterval'"></mat-label>
+          <input matInput  (change)="validationcode()"
+            formControlName="toInterval" appFocusOnEnter tabIndex="3">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.plant' | translate }}</mat-label>
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let plants of plantList" [value]="plants.id">
+              {{plants.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.company' | translate }}</mat-label>
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
+              {{companyList.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.branch' | translate }}</mat-label>
+          <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+              {{branch.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'voucherclass.suffix'"></mat-label>
+          <input matInput  formControlName="suffix" appFocusOnEnter
+            tabIndex="7">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'voucherclass.prefix'"></mat-label>
+          <input matInput formControlName="prefix" appFocusOnEnter
+            tabIndex="8">
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()" appFocusOnEnter tabIndex="10">
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
+      tabIndex="11">
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>
